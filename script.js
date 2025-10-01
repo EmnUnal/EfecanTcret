@@ -527,7 +527,7 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(rippleStyle);
     
-    // Counter Animation
+    // Counter Animation - İyileştirilmiş
     function animateCounters() {
         const counters = document.querySelectorAll('.counter');
         
@@ -542,8 +542,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (current >= target) {
                     current = target;
                     clearInterval(timer);
+                    // Son değeri "+" ile göster
+                    counter.textContent = Math.floor(current) + '+';
+                } else {
+                    counter.textContent = Math.floor(current);
                 }
-                counter.textContent = Math.floor(current);
             }, 16);
         });
     }
@@ -551,16 +554,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Trigger counter animation when about section is visible
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
-        const observer = new IntersectionObserver((entries) => {
+        const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateCounters();
-                    observer.unobserve(entry.target);
+                    // Biraz gecikme ekle, görünür olduktan sonra başlasın
+                    setTimeout(() => {
+                        animateCounters();
+                    }, 300);
+                    counterObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.2 }); // Threshold düşürüldü
         
-        observer.observe(aboutSection);
+        counterObserver.observe(aboutSection);
     }
     
     // Update copyright year automatically
@@ -592,3 +598,80 @@ function openDirections() {
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`;
     window.open(directionsUrl, '_blank');
 }
+
+// Product Sliders
+document.addEventListener('DOMContentLoaded', function() {
+    // Main Product Slider
+    const mainSlides = document.querySelectorAll('.product-slide-main');
+    const mainDots = document.querySelectorAll('.main-dot');
+    let mainCurrentSlide = 0;
+    
+    function showMainSlide(index) {
+        mainSlides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+        
+        mainDots.forEach((dot, i) => {
+            dot.classList.remove('active');
+            if (i === index) {
+                dot.classList.add('active');
+            }
+        });
+    }
+    
+    function nextMainSlide() {
+        mainCurrentSlide = (mainCurrentSlide + 1) % mainSlides.length;
+        showMainSlide(mainCurrentSlide);
+    }
+    
+    // Auto-advance main slider
+    if (mainSlides.length > 0) {
+        showMainSlide(0);
+        setInterval(nextMainSlide, 4000);
+        
+        // Dot click handlers
+        mainDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                mainCurrentSlide = index;
+                showMainSlide(mainCurrentSlide);
+            });
+        });
+    }
+    
+    // Left Product Slider
+    const leftSlides = document.querySelectorAll('.product-slide-left');
+    let leftCurrentSlide = 0;
+    
+    function nextLeftSlide() {
+        leftSlides.forEach((slide, i) => {
+            slide.classList.remove('active');
+        });
+        leftCurrentSlide = (leftCurrentSlide + 1) % leftSlides.length;
+        leftSlides[leftCurrentSlide].classList.add('active');
+    }
+    
+    if (leftSlides.length > 0) {
+        leftSlides[0].classList.add('active');
+        setInterval(nextLeftSlide, 3500);
+    }
+    
+    // Right Product Slider
+    const rightSlides = document.querySelectorAll('.product-slide-right');
+    let rightCurrentSlide = 0;
+    
+    function nextRightSlide() {
+        rightSlides.forEach((slide, i) => {
+            slide.classList.remove('active');
+        });
+        rightCurrentSlide = (rightCurrentSlide + 1) % rightSlides.length;
+        rightSlides[rightCurrentSlide].classList.add('active');
+    }
+    
+    if (rightSlides.length > 0) {
+        rightSlides[0].classList.add('active');
+        setInterval(nextRightSlide, 3000);
+    }
+});

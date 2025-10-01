@@ -274,6 +274,46 @@
             animation: floatUp 1s ease-out forwards;
         }
         
+        /* Floating Animation for Stats */
+        @keyframes animate-float {
+            0%, 100% { 
+                transform: translateY(0px);
+            }
+            50% { 
+                transform: translateY(-15px);
+            }
+        }
+        
+        .animate-float {
+            animation: animate-float 3s ease-in-out infinite;
+        }
+        
+        /* Product Slider Styles */
+        .product-slide-main,
+        .product-slide-left,
+        .product-slide-right {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            transform: scale(0.95);
+        }
+        
+        .product-slide-main.active,
+        .product-slide-left.active,
+        .product-slide-right.active {
+            opacity: 1;
+            position: relative;
+            transform: scale(1);
+        }
+        
+        .main-dot.active {
+            opacity: 1 !important;
+            transform: scale(1.5);
+        }
+        
         /* Gradient Text Animation */
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
@@ -461,182 +501,136 @@
         </div>
     </nav>
 
-    <!-- Intro Section -->
-    <section id="intro" class="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-black pt-16 md:pt-20 z-10">
+    <!-- Home / Hero Section -->
+    <section id="home" class="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-black pt-20 md:pt-24">
         <!-- Animated Background -->
         <div class="absolute inset-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-indigo-900/20"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-red-900/20 via-purple-900/20 to-blue-900/20"></div>
             
-            <!-- Geometric Shapes -->
-            <div class="absolute top-20 left-20 w-32 h-32 border border-blue-400/20 rounded-full animate-spin" style="animation-duration: 20s;"></div>
-            <div class="absolute bottom-20 right-20 w-24 h-24 border border-purple-400/20 rounded-full animate-spin" style="animation-duration: 15s; animation-direction: reverse;"></div>
-            <div class="absolute top-1/2 left-10 w-16 h-16 bg-gradient-to-br from-cyan-400/10 to-blue-400/10 rounded-lg rotate-45 animate-pulse"></div>
-            <div class="absolute bottom-1/3 right-10 w-20 h-20 bg-gradient-to-br from-emerald-400/10 to-teal-400/10 rounded-lg rotate-12 animate-pulse" style="animation-delay: 2s;"></div>
+            <!-- Geometric Shapes - Hidden on mobile -->
+            <div class="hidden md:block absolute top-32 left-20 w-64 h-64 border-2 border-red-500/20 rounded-full animate-spin" style="animation-duration: 30s;"></div>
+            <div class="hidden md:block absolute bottom-32 right-20 w-48 h-48 border-2 border-blue-500/20 rounded-full animate-spin" style="animation-duration: 25s; animation-direction: reverse;"></div>
+            <div class="hidden md:block absolute top-1/2 left-10 w-32 h-32 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-3xl rotate-45 animate-pulse"></div>
+            <div class="hidden md:block absolute bottom-1/3 right-10 w-40 h-40 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-3xl rotate-12 animate-pulse" style="animation-delay: 2s;"></div>
             
-            <!-- Floating Particles -->
-            <div class="intro-particle absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full opacity-60"></div>
-            <div class="intro-particle absolute top-1/3 right-1/3 w-3 h-3 bg-purple-400 rounded-full opacity-40" style="animation-delay: 1s;"></div>
-            <div class="intro-particle absolute bottom-1/3 left-1/3 w-2 h-2 bg-indigo-400 rounded-full opacity-50" style="animation-delay: 2s;"></div>
-            <div class="intro-particle absolute top-2/3 right-1/4 w-4 h-4 bg-cyan-400 rounded-full opacity-30" style="animation-delay: 3s;"></div>
-            <div class="intro-particle absolute bottom-1/4 right-1/2 w-2 h-2 bg-emerald-400 rounded-full opacity-60" style="animation-delay: 4s;"></div>
-            <div class="intro-particle absolute top-1/2 left-1/2 w-1 h-1 bg-pink-400 rounded-full opacity-70" style="animation-delay: 5s;"></div>
-            <div class="intro-particle absolute top-3/4 left-1/5 w-2 h-2 bg-yellow-400 rounded-full opacity-50" style="animation-delay: 6s;"></div>
+            <!-- Floating Particles - Hidden on mobile -->
+            <div class="hidden md:block intro-particle absolute top-1/4 left-1/4 w-3 h-3 bg-red-400 rounded-full opacity-60"></div>
+            <div class="hidden md:block intro-particle absolute top-1/3 right-1/3 w-4 h-4 bg-blue-400 rounded-full opacity-50" style="animation-delay: 1s;"></div>
+            <div class="hidden md:block intro-particle absolute bottom-1/3 left-1/3 w-2 h-2 bg-yellow-400 rounded-full opacity-70" style="animation-delay: 2s;"></div>
+            <div class="hidden md:block intro-particle absolute top-2/3 right-1/4 w-5 h-5 bg-purple-400 rounded-full opacity-40" style="animation-delay: 3s;"></div>
+            <div class="hidden md:block intro-particle absolute bottom-1/4 right-1/2 w-3 h-3 bg-emerald-400 rounded-full opacity-60" style="animation-delay: 4s;"></div>
             
-            <!-- Light Rays -->
-            <div class="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-blue-400/30 to-transparent"></div>
-            <div class="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-purple-400/30 to-transparent"></div>
+            <!-- Light Rays - Hidden on mobile -->
+            <div class="hidden md:block absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-red-400/20 to-transparent"></div>
+            <div class="hidden md:block absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-blue-400/20 to-transparent"></div>
         </div>
         
         <!-- Main Content -->
-        <div class="relative z-10 min-h-screen flex items-center justify-center pt-8 md:pt-16 pb-8">
-            <div class="text-center max-w-4xl mx-auto px-4 py-8">
-                <!-- Logo Animation -->
-                <div class="mb-6 md:mb-8" data-aos="fade-down" data-aos-delay="200">
-                    <div class="inline-flex items-center space-x-3 md:space-x-4 bg-white/10 backdrop-blur-md rounded-2xl md:rounded-3xl p-4 md:p-6 border border-white/20 shadow-2xl">
-                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-white to-gray-100 rounded-xl md:rounded-2xl flex items-center justify-center shadow-xl">
-                            <img src="images/CROWN logo.jpeg" alt="Crown Logo" class="w-8 h-8 md:w-12 md:h-12 object-contain">
+        <div class="relative z-10 min-h-[calc(100vh-5rem)] flex items-center py-6 md:py-8 pb-16 md:pb-24">
+            <div class="container mx-auto px-4 md:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+                    <!-- Right Content - Product Showcase (Mobilde Üstte) -->
+                    <div class="relative order-1 lg:order-2" data-aos="fade-left" data-aos-delay="400">
+                        <!-- Main Product Display -->
+                        <div class="relative">
+                            <!-- Decorative Glow -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-red-500/30 to-yellow-500/30 rounded-full blur-3xl opacity-50"></div>
+                            
+                            <!-- Product Grid -->
+                            <div class="relative grid grid-cols-2 gap-3 md:gap-4 lg:gap-6">
+                                <!-- Featured Product Slider - Large -->
+                                <div class="col-span-2 relative group">
+                                    <div class="bg-white/10 backdrop-blur-md rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 border border-white/20 shadow-2xl hover:bg-white/15 transition-all duration-500 relative overflow-hidden">
+                                        <div class="absolute -top-3 -right-3 md:-top-4 md:-right-4 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-xs md:text-sm shadow-lg z-10">
+                                            <i class="fas fa-star mr-1 md:mr-2"></i>Popüler Ürün
+                </div>
+                
+                                        <!-- Main Product Slider -->
+                                        <div class="product-slider-main relative">
+                                            <div class="product-slide-main active">
+                                                <img src="images/4inc/yellow 4 inc .png" alt="Crown Sarı 4 inch" class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain mx-auto transform group-hover:scale-110 transition-transform duration-500">
+                                                <div class="mt-3 md:mt-4 lg:mt-6 text-center">
+                                                    <h3 class="text-white font-bold text-base md:text-lg lg:text-xl mb-1 md:mb-2">Crown 4" Sarı</h3>
+                                                    <p class="text-gray-300 text-xs md:text-sm">Profesyonel Cilâ Bezi</p>
+                            </div>
+                            </div>
+                                            <div class="product-slide-main">
+                                                <img src="images/4inc/blue 4 inc.png" alt="Crown Mavi 4 inch" class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain mx-auto transform group-hover:scale-110 transition-transform duration-500">
+                                                <div class="mt-3 md:mt-4 lg:mt-6 text-center">
+                                                    <h3 class="text-white font-bold text-base md:text-lg lg:text-xl mb-1 md:mb-2">Crown 4" Mavi</h3>
+                                                    <p class="text-gray-300 text-xs md:text-sm">Otomotiv Cilâ Bezi</p>
                         </div>
-                        <div class="text-left">
-                            <h1 class="text-xl md:text-3xl font-bold text-white">Efecan Ticaret</h1>
-                            <p class="text-gray-300 text-xs md:text-sm">Cilâ Bezleri & Kuyumcu Cilâ Bezleri</p>
+                    </div>
+                                            <div class="product-slide-main">
+                                                <img src="images/4inc/white 4 inc.png" alt="Crown Beyaz 4 inch" class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain mx-auto transform group-hover:scale-110 transition-transform duration-500">
+                                                <div class="mt-3 md:mt-4 lg:mt-6 text-center">
+                                                    <h3 class="text-white font-bold text-base md:text-lg lg:text-xl mb-1 md:mb-2">Crown 4" Beyaz</h3>
+                                                    <p class="text-gray-300 text-xs md:text-sm">Endüstriyel Cilâ Bezi</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Main Title -->
-                <h2 class="text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight" data-aos="fade-up" data-aos-delay="400">
-                    <span class="text-transparent bg-clip-text gradient-text">
-                        Kaliteli Cilâ Bezleri
-                    </span>
-                </h2>
-                
-                <!-- Subtitle -->
-                <p class="text-base md:text-xl lg:text-2xl text-gray-300 mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed px-4" data-aos="fade-up" data-aos-delay="600">
-                    25+ yıllık deneyimimizle, Crown marka cilâ bezleri ve kuyumcu cilâ bezleri konusunda 
-                    <span class="text-cyan-400 font-semibold">uzman çözümler</span> sunuyoruz.
-                </p>
-                
-                <!-- Features -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="800">
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="relative z-10">
-                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-award text-white text-lg md:text-xl"></i>
-                            </div>
-                            <h3 class="text-white font-semibold mb-2 text-sm md:text-base">Premium Kalite</h3>
-                            <p class="text-gray-300 text-xs md:text-sm">En yüksek standartlarda üretim</p>
-                            <div class="mt-3 flex justify-center">
-                                <div class="w-6 md:w-8 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
-                            </div>
+                                        <!-- Slider Dots -->
+                                        <div class="flex justify-center space-x-2 mt-3 md:mt-4">
+                                            <button class="main-dot w-2 h-2 bg-white rounded-full opacity-50 hover:opacity-100 transition-opacity" data-slide="0"></button>
+                                            <button class="main-dot w-2 h-2 bg-white rounded-full opacity-50 hover:opacity-100 transition-opacity" data-slide="1"></button>
+                                            <button class="main-dot w-2 h-2 bg-white rounded-full opacity-50 hover:opacity-100 transition-opacity" data-slide="2"></button>
                         </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="relative z-10">
-                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-cogs text-white text-lg md:text-xl"></i>
-                            </div>
-                            <h3 class="text-white font-semibold mb-2 text-sm md:text-base">Geniş Yelpaze</h3>
-                            <p class="text-gray-300 text-xs md:text-sm">500+ farklı ürün çeşidi</p>
-                            <div class="mt-3 flex justify-center">
-                                <div class="w-6 md:w-8 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
-                            </div>
                         </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="relative z-10">
-                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-headset text-white text-lg md:text-xl"></i>
-                            </div>
-                            <h3 class="text-white font-semibold mb-2 text-sm md:text-base">7/24 Destek</h3>
-                            <p class="text-gray-300 text-xs md:text-sm">Profesyonel müşteri hizmetleri</p>
-                            <div class="mt-3 flex justify-center">
-                                <div class="w-6 md:w-8 h-1 bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="1000">
-                    <a href="products.html" class="group relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 md:px-10 py-4 md:py-5 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 text-base md:text-lg overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="relative z-10 flex items-center justify-center">
-                            <i class="fas fa-play mr-2 md:mr-3 group-hover:scale-110 transition-transform duration-300"></i>
-                            <span>Ürünleri Keşfet</span>
-                        </div>
-                    </a>
-                    <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="group relative bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-6 md:px-10 py-4 md:py-5 rounded-full font-semibold hover:bg-white/20 hover:border-white/50 transition-all duration-300 text-base md:text-lg overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="relative z-10 flex items-center justify-center">
-                            <i class="fas fa-phone mr-2 md:mr-3 group-hover:scale-110 transition-transform duration-300"></i>
-                            <span>İletişime Geç</span>
-                        </div>
-                    </button>
+                                <!-- Secondary Product Slider 1 -->
+                                <div class="group">
+                                    <div class="bg-white/10 backdrop-blur-md rounded-xl md:rounded-2xl p-3 md:p-4 lg:p-6 border border-white/20 shadow-xl hover:bg-white/15 transition-all duration-300 transform group-hover:scale-105 relative overflow-hidden">
+                                        <div class="product-slider-left relative min-h-[140px] md:min-h-[160px] lg:min-h-[180px]">
+                                            <div class="product-slide-left active">
+                                                <img src="images/Derili/png/blue 6x50.PNG" alt="Kuyumcu Cilâ Bezi" class="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain mx-auto transform group-hover:scale-110 transition-transform">
+                                                <div class="mt-2 md:mt-3 lg:mt-4 text-center">
+                                                    <h4 class="text-white font-semibold text-xs md:text-sm lg:text-base">Kuyumcu 6x50</h4>
+                                                    <p class="text-gray-400 text-xs mt-1">Hassas İşleme</p>
+                    </div>
                 </div>
-                
-                <!-- Scroll Indicator -->
-                <div class="animate-bounce" data-aos="fade-up" data-aos-delay="1200">
-                    <div class="flex flex-col items-center text-white/70 hover:text-white transition-colors duration-300 cursor-pointer" onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'})">
-                        <span class="text-xs md:text-sm mb-2">Aşağı Kaydır</span>
-                        <i class="fas fa-chevron-down text-lg md:text-2xl"></i>
+                                            <div class="product-slide-left">
+                                                <img src="images/Derili/png/yellow 6x50.PNG" alt="Kuyumcu Sarı" class="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain mx-auto transform group-hover:scale-110 transition-transform">
+                                                <div class="mt-2 md:mt-3 lg:mt-4 text-center">
+                                                    <h4 class="text-white font-semibold text-xs md:text-sm lg:text-base">Kuyumcu 6x50</h4>
+                                                    <p class="text-gray-400 text-xs mt-1">Sarı Kalite</p>
+            </div>
+        </div>
+                                            <div class="product-slide-left">
+                                                <img src="images/Derili/png/white 6x50.PNG" alt="Kuyumcu Beyaz" class="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain mx-auto transform group-hover:scale-110 transition-transform">
+                                                <div class="mt-2 md:mt-3 lg:mt-4 text-center">
+                                                    <h4 class="text-white font-semibold text-xs md:text-sm lg:text-base">Kuyumcu 6x50</h4>
+                                                    <p class="text-gray-400 text-xs mt-1">Beyaz Premium</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Bottom Gradient -->
-        <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-slate-900 to-transparent"></div>
-    </section>
-
-    <!-- New Hero Slider -->
-    <section id="home" class="relative h-[80vh] overflow-hidden z-20">
-        <!-- Slide 1 - Crown Cilâ Bezleri -->
-        <div class="hero-slide active absolute inset-0 flex items-center">
-            <div class="absolute inset-0 bg-gradient-to-br from-red-900/90 via-slate-900/90 to-black/90"></div>
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-8 items-center">
-                    <!-- Left Content -->
-                    <div class="text-white" data-aos="fade-right">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                            <span class="text-red-400">Crown</span> Cilâ Bezleri
-                        </h1>
-                        <p class="text-xl md:text-2xl mb-6 text-gray-200" data-aos="fade-up" data-aos-delay="200">
-                            Profesyonel cilalama için kaliteli cilâ bezleri
-                        </p>
-                        <p class="text-lg mb-8 text-gray-300 leading-relaxed" data-aos="fade-up" data-aos-delay="400">
-                            2", 4", 5", 6" boyutlarında derili ve derisiz seçenekler. 
-                            Kuyumcu, otomotiv ve endüstriyel cilalama için ideal çözümler.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="600">
-                            <button class="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-full font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-                                <i class="fas fa-shopping-cart mr-2"></i>Ürünleri İncele
-                            </button>
-                            <button class="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-white/30 hover:border-white/50 transition-all duration-300">
-                                <i class="fas fa-phone mr-2"></i>Hemen Ara
-                            </button>
+                                <!-- Secondary Product Slider 2 -->
+                                <div class="group">
+                                    <div class="bg-white/10 backdrop-blur-md rounded-xl md:rounded-2xl p-3 md:p-4 lg:p-6 border border-white/20 shadow-xl hover:bg-white/15 transition-all duration-300 transform group-hover:scale-105 relative overflow-hidden">
+                                        <div class="product-slider-right relative min-h-[140px] md:min-h-[160px] lg:min-h-[180px]">
+                                            <div class="product-slide-right active">
+                                                <img src="images/5 inc/white 5 inc.png" alt="Crown 5 inch" class="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain mx-auto transform group-hover:scale-110 transition-transform">
+                                                <div class="mt-2 md:mt-3 lg:mt-4 text-center">
+                                                    <h4 class="text-white font-semibold text-xs md:text-sm lg:text-base">Crown 5" Beyaz</h4>
+                                                    <p class="text-gray-400 text-xs mt-1">Endüstriyel</p>
                         </div>
                     </div>
-                    <!-- Right Images -->
-                    <div class="flex justify-center" data-aos="fade-left" data-aos-delay="300">
-                        <div class="grid grid-cols-2 gap-4">
-                            <!-- Main Image -->
-                            <div class="relative col-span-2">
-                                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/20 shadow-2xl">
-                                    <img src="images/4inc/yellow 4 inc .png" alt="Crown Sarı 4 inch" class="w-32 h-32 object-contain mx-auto">
+                                            <div class="product-slide-right">
+                                                <img src="images/5 inc/blue 5 inc.png" alt="Crown 5 inch Mavi" class="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain mx-auto transform group-hover:scale-110 transition-transform">
+                                                <div class="mt-2 md:mt-3 lg:mt-4 text-center">
+                                                    <h4 class="text-white font-semibold text-xs md:text-sm lg:text-base">Crown 5" Mavi</h4>
+                                                    <p class="text-gray-400 text-xs mt-1">Profesyonel</p>
                                 </div>
-                                <div class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                                    Popüler
                                 </div>
-                            </div>
-                            <!-- Secondary Images -->
-                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-xl">
-                                <img src="images/4inc/blue 4 inc.png" alt="Crown Mavi 4 inch" class="w-20 h-20 object-contain mx-auto">
-                            </div>
-                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-xl">
-                                <img src="images/4inc/white 4 inc.png" alt="Crown Beyaz 4 inch" class="w-20 h-20 object-contain mx-auto">
+                                            <div class="product-slide-right">
+                                                <img src="images/5 inc/yellow 5 inc.png" alt="Crown 5 inch Sarı" class="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain mx-auto transform group-hover:scale-110 transition-transform">
+                                                <div class="mt-2 md:mt-3 lg:mt-4 text-center">
+                                                    <h4 class="text-white font-semibold text-xs md:text-sm lg:text-base">Crown 5" Sarı</h4>
+                                                    <p class="text-gray-400 text-xs mt-1">Premium Kalite</p>
                             </div>
                         </div>
                     </div>
@@ -644,334 +638,380 @@
             </div>
         </div>
         
-        <!-- Slide 2 - Kuyumcu Cilâ Bezleri -->
-        <div class="hero-slide absolute inset-0 flex items-center opacity-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-yellow-900/90 via-slate-900/90 to-black/90"></div>
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-8 items-center">
-                    <!-- Left Content -->
-                    <div class="text-white" data-aos="fade-right">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                            <span class="text-yellow-400">Kuyumcu</span> Cilâ Bezleri
+                            <!-- Floating Stats - Mobil Uyumlu -->
+                            <div class="absolute -bottom-3 -left-2 md:-bottom-6 md:-left-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl md:rounded-2xl p-2 md:p-4 shadow-2xl border border-blue-400/50 animate-float" data-aos="fade-up" data-aos-delay="1200">
+                                <div class="flex items-center space-x-2 md:space-x-3">
+                                    <div class="w-8 h-8 md:w-12 md:h-12 bg-white/20 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-users text-white text-sm md:text-xl"></i>
+                        </div>
+                                    <div>
+                                        <div class="text-white font-bold text-base md:text-lg lg:text-2xl">500+</div>
+                                        <div class="text-blue-100 text-[10px] md:text-xs whitespace-nowrap">Mutlu Müşteri</div>
+                    </div>
+                                </div>
+                                </div>
+                            
+                            <div class="absolute -top-3 -right-2 md:-top-6 md:-right-6 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl md:rounded-2xl p-2 md:p-4 shadow-2xl border border-emerald-400/50 animate-float" style="animation-delay: 1s;" data-aos="fade-up" data-aos-delay="1400">
+                                <div class="flex items-center space-x-2 md:space-x-3">
+                                    <div class="w-8 h-8 md:w-12 md:h-12 bg-white/20 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-check-circle text-white text-sm md:text-xl"></i>
+                            </div>
+                                    <div>
+                                        <div class="text-white font-bold text-base md:text-lg lg:text-2xl">%100</div>
+                                        <div class="text-emerald-100 text-[10px] md:text-xs whitespace-nowrap">Kalite Garantisi</div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                    <!-- Left Content (Mobilde Altta) -->
+                    <div class="text-white space-y-4 md:space-y-6 lg:space-y-8 order-2 lg:order-1" data-aos="fade-right">
+                        <!-- Brand Badge -->
+                        <div class="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-md rounded-full px-4 md:px-6 py-2 md:py-3 border border-white/20 shadow-xl" data-aos="fade-down" data-aos-delay="200">
+                            <div class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-white to-gray-100 rounded-xl flex items-center justify-center">
+                                <img src="images/CROWN logo.jpeg" alt="Crown Logo" class="w-6 h-6 md:w-8 md:h-8 object-contain">
+            </div>
+                            <span class="text-white font-bold text-sm md:text-lg">Crown Kalitesi</span>
+        </div>
+        
+                        <!-- Main Heading - Sade ve Şık -->
+                        <div data-aos="fade-up" data-aos-delay="400">
+                            <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-yellow-400 to-orange-400 block">
+                                    Profesyonel Cilâ Bezleri
+                                </span>
                         </h1>
-                        <p class="text-xl md:text-2xl mb-6 text-gray-200" data-aos="fade-up" data-aos-delay="200">
-                            Hassas cilalama için özel tasarım
+                            <div class="w-20 md:w-24 h-1 md:h-1.5 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full"></div>
+        </div>
+        
+                        <!-- Description -->
+                        <p class="text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed max-w-xl" data-aos="fade-up" data-aos-delay="600">
+                            <span class="font-semibold text-white">25+ yıllık deneyimimizle</span>, Crown marka cilâ bezleri ve kuyumcu cilâ bezleri konusunda 
+                            <span class="text-yellow-400 font-semibold">uzman çözümler</span> sunuyoruz.
                         </p>
-                        <p class="text-lg mb-8 text-gray-300 leading-relaxed" data-aos="fade-up" data-aos-delay="400">
-                            6x50mm ve 6x60mm boyutlarında derili ve derisiz seçenekler. 
-                            Kuyumcu, saatçi ve hassas metal işleme için ideal çözümler.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="600">
-                            <a href="products.html" class="bg-gradient-to-r from-yellow-600 to-yellow-700 text-white px-6 py-3 rounded-full font-semibold hover:from-yellow-700 hover:to-yellow-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-                                <i class="fas fa-gem mr-2"></i>Kuyumcu Ürünleri
+                        
+                        <!-- Compact Features - Mobil Uyumlu -->
+                        <div class="grid grid-cols-2 gap-3 md:gap-4 max-w-xl" data-aos="fade-up" data-aos-delay="800">
+                            <div class="flex items-center space-x-3 bg-white/5 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                                <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-award text-white text-base md:text-lg"></i>
+                        </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-xs md:text-sm">Premium Kalite</h3>
+                                    <p class="text-gray-400 text-xs hidden md:block">En yüksek standart</p>
+                    </div>
+                                </div>
+                            
+                            <div class="flex items-center space-x-3 bg-white/5 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                                <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-box text-white text-base md:text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-xs md:text-sm">500+ Ürün</h3>
+                                    <p class="text-gray-400 text-xs hidden md:block">Geniş yelpaze</p>
+            </div>
+        </div>
+        
+                            <div class="flex items-center space-x-3 bg-white/5 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                                <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-shipping-fast text-white text-base md:text-lg"></i>
+        </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-xs md:text-sm">Hızlı Teslimat</h3>
+                                    <p class="text-gray-400 text-xs hidden md:block">Güvenli kargo</p>
+        </div>
+        </div>
+        
+                            <div class="flex items-center space-x-3 bg-white/5 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                                <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-headset text-white text-base md:text-lg"></i>
+                    </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-xs md:text-sm">7/24 Destek</h3>
+                                    <p class="text-gray-400 text-xs hidden md:block">Uzman yardım</p>
+                        </div>
+                    </div>
+                </div>
+                
+                        <!-- Modern CTA Buttons - Daha Şık -->
+                        <div class="flex flex-col sm:flex-row gap-3 md:gap-4" data-aos="fade-up" data-aos-delay="1000">
+                            <a href="products.html" class="group relative bg-gradient-to-r from-red-600 to-red-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold text-sm md:text-base hover:from-red-700 hover:to-red-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center space-x-2">
+                                <i class="fas fa-shopping-bag text-sm md:text-base"></i>
+                                <span>Ürünleri Keşfet</span>
+                                <i class="fas fa-arrow-right text-xs md:text-sm group-hover:translate-x-1 transition-transform"></i>
                             </a>
-                            <a href="products.html" class="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-white/30 hover:border-white/50 transition-all duration-300">
-                                <i class="fas fa-info-circle mr-2"></i>Detaylar
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Right Images -->
-                    <div class="flex justify-center" data-aos="fade-left" data-aos-delay="300">
-                        <div class="grid grid-cols-2 gap-4">
-                            <!-- Main Image -->
-                            <div class="relative col-span-2">
-                                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/20 shadow-2xl">
-                                    <img src="images/Derili/png/yellow 6x50.PNG" alt="Derili Sarı 6x50" class="w-32 h-32 object-contain mx-auto">
-                                </div>
-                                <div class="absolute -top-2 -right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                                    Hassas
-                                </div>
-                            </div>
-                            <!-- Secondary Images -->
-                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-xl">
-                                <img src="images/Derisiz/png/blue 6x50.PNG" alt="Derisiz Mavi 6x50" class="w-20 h-20 object-contain mx-auto">
-                            </div>
-                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-xl">
-                                <img src="images/Derili/png/white 6x50.PNG" alt="Derili Beyaz 6x50" class="w-20 h-20 object-contain mx-auto">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 3 - Profesyonel Çözümler -->
-        <div class="hero-slide absolute inset-0 flex items-center opacity-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-900/90 via-violet-900/90 to-purple-900/90"></div>
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-8 items-center">
-                    <!-- Left Content -->
-                    <div class="text-white" data-aos="fade-right">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                            <span class="text-purple-300">Profesyonel</span> Çözümler
-                        </h1>
-                        <p class="text-xl md:text-2xl mb-6 text-gray-200" data-aos="fade-up" data-aos-delay="200">
-                            Endüstriyel ve otomotiv cilalama uzmanı
-                        </p>
-                        <p class="text-lg mb-8 text-gray-300 leading-relaxed" data-aos="fade-up" data-aos-delay="400">
-                            Derili ve derisiz seçeneklerle her ihtiyaca uygun çözümler. 
-                            Kaliteli malzeme ve uzun ömürlü kullanım garantisi. 
-                            <span class="text-purple-300 font-semibold">25+ yıllık deneyim</span> ile hizmetinizdeyiz.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="600">
-                            <button class="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-700 hover:to-purple-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-                                <i class="fas fa-tools mr-2"></i>Hizmetlerimiz
-                            </button>
-                            <button class="bg-white/20 backdrop-blur-sm border-2 border-purple-300/50 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-500/20 hover:border-purple-300 transition-all duration-300">
-                                <i class="fas fa-envelope mr-2"></i>İletişim
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Right Images -->
-                    <div class="flex justify-center" data-aos="fade-left" data-aos-delay="300">
-                        <div class="grid grid-cols-2 gap-4">
-                            <!-- Main Image -->
-                            <div class="relative col-span-2">
-                                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/20 shadow-2xl">
-                                    <img src="images/5 inc/blue 5 inc.png" alt="Crown Mavi 5 inch" class="w-32 h-32 object-contain mx-auto">
-                                </div>
-                                <div class="absolute -top-2 -right-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                                    Profesyonel
-                                </div>
-                            </div>
-                            <!-- Secondary Images -->
-                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-xl">
-                                <img src="images/5 inc/yellow 5 inc.png" alt="Crown Sarı 5 inch" class="w-20 h-20 object-contain mx-auto">
-                            </div>
-                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-xl">
-                                <img src="images/5 inc/white 5 inc.png" alt="Crown Beyaz 5 inch" class="w-20 h-20 object-contain mx-auto">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 4 - Ekstra Kalite -->
-        <div class="hero-slide absolute inset-0 flex items-center opacity-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-red-900/90 via-rose-900/90 to-red-900/90"></div>
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-8 items-center">
-                    <!-- Left Content -->
-                    <div class="text-white" data-aos="fade-right">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                            <span class="text-red-300">Ekstra</span> Kalite
-                        </h1>
-                        <p class="text-xl md:text-2xl mb-6 text-gray-200" data-aos="fade-up" data-aos-delay="200">
-                            Premium cilâ bezleri ve özel ürünler
-                        </p>
-                        <p class="text-lg mb-8 text-gray-300 leading-relaxed" data-aos="fade-up" data-aos-delay="400">
-                            Özel siparişler, ekstra kalite ürünler ve diğer cilalama çözümleri. 
-                            <span class="text-red-300 font-semibold">%100 müşteri memnuniyeti</span> garantisi ile 
-                            her ihtiyaca özel çözümler sunuyoruz.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="600">
-                            <button class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-full font-semibold hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-                                <i class="fas fa-star mr-2"></i>Premium Ürünler
-                            </button>
-                            <button class="bg-white/20 backdrop-blur-sm border-2 border-red-300/50 text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500/20 hover:border-red-300 transition-all duration-300">
-                                <i class="fas fa-phone mr-2"></i>Özel Sipariş
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Right Images -->
-                    <div class="flex justify-center" data-aos="fade-left" data-aos-delay="300">
-                        <div class="grid grid-cols-2 gap-4">
-                            <!-- Main Image -->
-                            <div class="relative col-span-2">
-                                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/20 shadow-2xl">
-                                    <img src="images/extralar/red extra 6x60.png" alt="Kırmızı Ekstra 6x60" class="w-32 h-32 object-contain mx-auto">
-                                </div>
-                                <div class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                                    Premium
-                                </div>
-                            </div>
-                            <!-- Secondary Images -->
-                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-xl">
-                                <img src="images/extralar/white extra 6x60.png" alt="Beyaz Ekstra 6x60" class="w-20 h-20 object-contain mx-auto">
-                            </div>
-                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-xl">
-                                <img src="images/extralar/yellow extra 6x60.png" alt="Sarı Ekstra 6x60" class="w-20 h-20 object-contain mx-auto">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 5 - Diğer Ürünler -->
-        <div class="hero-slide absolute inset-0 flex items-center opacity-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/90 via-green-900/90 to-emerald-900/90"></div>
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-8 items-center">
-                    <!-- Left Content -->
-                    <div class="text-white" data-aos="fade-right">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                            <span class="text-emerald-300">Diğer</span> Ürünler
-                        </h1>
-                        <p class="text-xl md:text-2xl mb-6 text-gray-200" data-aos="fade-up" data-aos-delay="200">
-                            Geniş ürün yelpazesi ve çeşitlilik
-                        </p>
-                        <p class="text-lg mb-8 text-gray-300 leading-relaxed" data-aos="fade-up" data-aos-delay="400">
-                            Çeşitli boyutlarda ve kalitelerde cilâ bezleri. 
-                            <span class="text-emerald-300 font-semibold">500+ farklı ürün</span> çeşidi ile 
-                            her ihtiyaca uygun çözümler sunuyoruz.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="600">
-                            <button class="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-6 py-3 rounded-full font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-                                <i class="fas fa-th-large mr-2"></i>Tüm Ürünler
-                            </button>
-                            <button class="bg-white/20 backdrop-blur-sm border-2 border-emerald-300/50 text-white px-6 py-3 rounded-full font-semibold hover:bg-emerald-500/20 hover:border-emerald-300 transition-all duration-300">
-                                <i class="fas fa-phone mr-2"></i>İletişim
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Right Images -->
-                    <div class="flex justify-center" data-aos="fade-left" data-aos-delay="300">
-                        <div class="grid grid-cols-2 gap-4">
-                            <!-- Main Image -->
-                            <div class="relative col-span-2">
-                                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/20 shadow-2xl">
-                                    <img src="images/diger ürünler/IMG_0815.PNG" alt="Özel Ürün 1" class="w-32 h-32 object-contain mx-auto">
-                                </div>
-                                <div class="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                                    Çeşitli
-                                </div>
-                            </div>
-                            <!-- Secondary Images -->
-                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-xl">
-                                <img src="images/diger ürünler/IMG_0816.PNG" alt="Özel Ürün 2" class="w-20 h-20 object-contain mx-auto">
-                            </div>
-                            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-xl">
-                                <img src="images/diger ürünler/IMG_0817.PNG" alt="Özel Ürün 3" class="w-20 h-20 object-contain mx-auto">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Left/Right Navigation Buttons -->
-        <button id="prevBtn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md border border-white/30 text-white p-3 rounded-full hover:bg-white/30 hover:border-white/50 transition-all duration-300 z-30">
-            <i class="fas fa-chevron-left text-xl"></i>
-        </button>
-        <button id="nextBtn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md border border-white/30 text-white p-3 rounded-full hover:bg-white/30 hover:border-white/50 transition-all duration-300 z-30">
-            <i class="fas fa-chevron-right text-xl"></i>
-        </button>
-        
-        <!-- Slider Navigation Dots -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4 z-30">
-            <button class="slider-dot w-3 h-3 bg-white rounded-full opacity-50 hover:opacity-100 transition-opacity" data-slide="0"></button>
-            <button class="slider-dot w-3 h-3 bg-white rounded-full opacity-50 hover:opacity-100 transition-opacity" data-slide="1"></button>
-            <button class="slider-dot w-3 h-3 bg-white rounded-full opacity-50 hover:opacity-100 transition-opacity" data-slide="2"></button>
-            <button class="slider-dot w-3 h-3 bg-white rounded-full opacity-50 hover:opacity-100 transition-opacity" data-slide="3"></button>
-            <button class="slider-dot w-3 h-3 bg-white rounded-full opacity-50 hover:opacity-100 transition-opacity" data-slide="4"></button>
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 right-8 text-white animate-bounce">
-            <i class="fas fa-chevron-down text-2xl"></i>
-        </div>
-    </section>
-
-    <!-- Fixed Hero Bottom Section -->
-    <section class="relative py-8 bg-gradient-to-r from-slate-900 via-gray-900 to-slate-900 overflow-hidden z-30">
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, #3b82f6 0%, transparent 50%), radial-gradient(circle at 75% 75%, #8b5cf6 0%, transparent 50%);"></div>
-        </div>
-        
-        <!-- Floating Elements -->
-        <div class="floating-element absolute top-10 left-10 w-20 h-20 bg-blue-500/20 rounded-full blur-xl"></div>
-        <div class="floating-element absolute top-20 right-20 w-16 h-16 bg-purple-500/20 rounded-full blur-xl" style="animation-delay: 1s;"></div>
-        <div class="floating-element absolute bottom-10 left-1/4 w-12 h-12 bg-emerald-500/20 rounded-full blur-xl" style="animation-delay: 2s;"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="grid lg:grid-cols-3 gap-8 items-center">
-                <!-- Left Content -->
-                <div class="lg:col-span-1 text-center lg:text-left" data-aos="fade-right" data-aos-delay="100">
-                    <div class="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 mb-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
-                        <span class="text-white font-medium">25+ Yıllık Deneyim</span>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up" data-aos-delay="300">
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                            Güvenilir
-                        </span> Partner
-                    </h2>
-                    <p class="text-gray-300 text-lg leading-relaxed" data-aos="fade-up" data-aos-delay="400">
-                        Cilâ bezleri sektöründe uzman ekibimizle, kaliteli ürünler ve güvenilir hizmet sunuyoruz.
-                    </p>
-                </div>
-                
-                <!-- Center Stats -->
-                <div class="lg:col-span-1" data-aos="fade-up" data-aos-delay="200">
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="stats-card bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 relative overflow-hidden group" data-aos="zoom-in" data-aos-delay="300">
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="relative z-10">
-                                <div class="text-3xl font-bold text-white mb-2 counter" data-target="500">0</div>
-                                <div class="text-gray-300 text-sm">Ürün Çeşidi</div>
-                                <div class="absolute top-2 right-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                            </div>
-                        </div>
-                        <div class="stats-card bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 relative overflow-hidden group" data-aos="zoom-in" data-aos-delay="400">
-                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="relative z-10">
-                                <div class="text-3xl font-bold text-white mb-2 counter" data-target="1000">0</div>
-                                <div class="text-gray-300 text-sm">Mutlu Müşteri</div>
-                                <div class="absolute top-2 right-2 w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                            </div>
-                        </div>
-                        <div class="stats-card bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 relative overflow-hidden group" data-aos="zoom-in" data-aos-delay="500">
-                            <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="relative z-10">
-                                <div class="text-3xl font-bold text-white mb-2 counter" data-target="100">0</div>
-                                <div class="text-gray-300 text-sm">Kalite Garantisi</div>
-                                <div class="absolute top-2 right-2 w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                            </div>
-                        </div>
-                        <div class="stats-card bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:bg-white/15 relative overflow-hidden group" data-aos="zoom-in" data-aos-delay="600">
-                            <div class="absolute inset-0 bg-gradient-to-br from-red-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="relative z-10">
-                                <div class="text-3xl font-bold text-white mb-2">24/7</div>
-                                <div class="text-gray-300 text-sm">Destek</div>
-                                <div class="absolute top-2 right-2 w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Right CTA -->
-                <div class="lg:col-span-1 text-center lg:text-right" data-aos="fade-left" data-aos-delay="300">
-                    <div class="space-y-4">
-                        <button class="w-full lg:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 text-lg" data-aos="fade-up" data-aos-delay="400">
-                            <i class="fas fa-phone mr-2"></i>Hemen İletişime Geç
-                        </button>
-                        <a href="products.html" class="w-full lg:w-auto bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/20 hover:border-white/50 transition-all duration-300 text-lg text-center" data-aos="fade-up" data-aos-delay="500">
-                            <i class="fas fa-catalog mr-2"></i>Ürün Kataloğu
+                            <a href="#contact" class="group relative bg-white/10 backdrop-blur-sm border border-white/30 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold text-sm md:text-base hover:bg-white/20 hover:border-white/50 transition-all duration-300 flex items-center justify-center space-x-2">
+                                <i class="fas fa-phone text-sm md:text-base"></i>
+                                <span>İletişime Geç</span>
                         </a>
                     </div>
-                    <div class="mt-6 flex justify-center lg:justify-end space-x-4" data-aos="fade-up" data-aos-delay="600">
-                        <div class="flex items-center space-x-2 text-gray-300">
-                            <i class="fas fa-shield-alt text-emerald-400"></i>
-                            <span class="text-sm">Güvenli Ödeme</span>
                         </div>
-                        <div class="flex items-center space-x-2 text-gray-300">
-                            <i class="fas fa-truck text-blue-400"></i>
-                            <span class="text-sm">Hızlı Teslimat</span>
+                        </div>
+                    </div>
+                </div>
+        
+        <!-- Scroll Indicator - Mobil Optimize -->
+        <div class="absolute bottom-2 md:bottom-6 lg:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20" data-aos="fade-up" data-aos-delay="1600">
+            <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" class="flex flex-col items-center text-white/70 hover:text-white transition-all duration-300 group cursor-pointer">
+                <span class="text-[10px] md:text-xs lg:text-sm font-medium mb-1 md:mb-2 group-hover:text-yellow-400 transition-colors whitespace-nowrap">Daha Fazlası İçin Kaydır</span>
+                <div class="w-5 h-8 md:w-6 md:h-10 lg:w-8 lg:h-12 border-2 border-white/30 rounded-full flex items-start justify-center p-1.5 md:p-2 group-hover:border-yellow-400 transition-all duration-300 group-hover:scale-110">
+                    <div class="w-1 h-1.5 md:w-1 md:h-2 lg:w-1.5 lg:h-3 bg-white/70 rounded-full group-hover:bg-yellow-400 transition-colors animate-pulse"></div>
+            </div>
+            </button>
+        </div>
+        
+        <!-- Bottom Gradient Transition -->
+        <div class="absolute bottom-0 left-0 w-full h-16 md:h-24 lg:h-32 bg-gradient-to-t from-slate-50 to-transparent pointer-events-none"></div>
+    </section>
+
+    <!-- Product Categories & Features Section -->
+    <section class="relative py-16 md:py-24 bg-gradient-to-br from-slate-50 via-white to-gray-50 overflow-hidden">
+        <!-- Background Decorations -->
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-red-200/40 to-orange-200/40 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-64 h-64 bg-gradient-to-br from-blue-200/40 to-purple-200/40 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-red-600 to-orange-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full mb-6 md:mb-8 shadow-lg">
+                    <i class="fas fa-crown text-base md:text-xl"></i>
+                    <span class="font-bold text-sm md:text-base">Crown Ürün Yelpazesi</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600">
+                        Her İhtiyaca Özel
+                    </span>
+                    <br />
+                    <span class="text-gray-800">Cilâ Çözümleri</span>
+                </h2>
+                <p class="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Profesyonel kullanımdan hobi amaçlı çalışmalara kadar geniş ürün yelpazemiz ile yanınızdayız
+                </p>
+            </div>
+
+            <!-- Product Categories Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-16 md:mb-20">
+                <!-- Category 1: Crown Cilâ Bezleri -->
+                <div class="group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative bg-white rounded-3xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden">
+                        <!-- Hover Effect -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-red-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative z-10">
+                            <!-- Icon -->
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg">
+                                <i class="fas fa-compact-disc text-white text-2xl md:text-3xl"></i>
+                            </div>
+                            
+                            <!-- Content -->
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">Crown Cilâ Bezleri</h3>
+                            <p class="text-sm md:text-base text-gray-600 mb-4 leading-relaxed">2", 4", 5", 6" boyutlarında profesyonel cilâ bezleri</p>
+                            
+                            <!-- Features -->
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                    Derili & Derisiz
+                                </li>
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                    Çoklu Renk Seçenekleri
+                                </li>
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                    Yüksek Dayanıklılık
+                                </li>
+                            </ul>
+                            
+                            <!-- CTA -->
+                            <a href="products.html" class="inline-flex items-center text-red-600 font-semibold group-hover:text-red-700 transition-colors text-sm md:text-base">
+                                <span>Ürünleri İncele</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Kuyumcu Cilâ Bezleri -->
+                <div class="group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative bg-white rounded-3xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-yellow-500 to-amber-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg">
+                                <i class="fas fa-gem text-white text-2xl md:text-3xl"></i>
+                            </div>
+                            
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">Kuyumcu Cilâ</h3>
+                            <p class="text-sm md:text-base text-gray-600 mb-4 leading-relaxed">6x50mm ve 6x60mm hassas işleme için özel</p>
+                            
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-yellow-600 mr-2"></i>
+                                    Hassas Cilalama
+                                </li>
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-yellow-600 mr-2"></i>
+                                    Altın & Gümüş İçin
+                                </li>
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-yellow-600 mr-2"></i>
+                                    Özel Formül
+                                </li>
+                            </ul>
+                            
+                            <a href="products.html" class="inline-flex items-center text-yellow-600 font-semibold group-hover:text-yellow-700 transition-colors text-sm md:text-base">
+                                <span>Ürünleri İncele</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Endüstriyel Çözümler -->
+                <div class="group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative bg-white rounded-3xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg">
+                                <i class="fas fa-industry text-white text-2xl md:text-3xl"></i>
+                            </div>
+                            
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">Endüstriyel</h3>
+                            <p class="text-sm md:text-base text-gray-600 mb-4 leading-relaxed">Otomotiv ve metal işleme çözümleri</p>
+                            
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-blue-500 mr-2"></i>
+                                    Yüksek Performans
+                                </li>
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-blue-500 mr-2"></i>
+                                    Uzun Ömürlü
+                                </li>
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-blue-500 mr-2"></i>
+                                    Toplu Satış
+                                </li>
+                            </ul>
+                            
+                            <a href="products.html" class="inline-flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors text-sm md:text-base">
+                                <span>Ürünleri İncele</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4: Özel Siparişler -->
+                <div class="group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative bg-white rounded-3xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg">
+                                <i class="fas fa-magic text-white text-2xl md:text-3xl"></i>
+                            </div>
+                            
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">Özel Sipariş</h3>
+                            <p class="text-sm md:text-base text-gray-600 mb-4 leading-relaxed">İhtiyacınıza özel üretim çözümleri</p>
+                            
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    Özel Boyutlar
+                                </li>
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    Özel Formülasyon
+                                </li>
+                                <li class="flex items-center text-xs md:text-sm text-gray-700">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    Danışmanlık
+                                </li>
+                            </ul>
+                            
+                            <a href="#contact" class="inline-flex items-center text-emerald-600 font-semibold group-hover:text-emerald-700 transition-colors text-sm md:text-base">
+                                <span>İletişime Geç</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Why Choose Us Section -->
+            <div class="bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 rounded-3xl md:rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-2xl relative overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                <!-- Decorative Elements -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"></div>
+                
+                <div class="relative z-10">
+                    <div class="text-center mb-10 md:mb-14">
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
+                            Neden <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">Efecan Ticaret?</span>
+                        </h3>
+                        <p class="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
+                            25+ yıllık tecrübemiz ve müşteri memnuniyeti odaklı yaklaşımımızla sektörde öncüyüz
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                        <!-- Feature 1 -->
+                        <div class="text-center group" data-aos="fade-up" data-aos-delay="600">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-certificate text-white text-2xl md:text-3xl"></i>
+                            </div>
+                            <h4 class="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">Kalite Garantisi</h4>
+                            <p class="text-sm md:text-base text-gray-300 leading-relaxed">Tüm ürünlerimizde %100 kalite garantisi</p>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="text-center group" data-aos="fade-up" data-aos-delay="700">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-shipping-fast text-white text-2xl md:text-3xl"></i>
+                            </div>
+                            <h4 class="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">Hızlı Teslimat</h4>
+                            <p class="text-sm md:text-base text-gray-300 leading-relaxed">Türkiye geneli hızlı ve güvenli teslimat</p>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="text-center group" data-aos="fade-up" data-aos-delay="800">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-user-tie text-white text-2xl md:text-3xl"></i>
+                            </div>
+                            <h4 class="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">Uzman Destek</h4>
+                            <p class="text-sm md:text-base text-gray-300 leading-relaxed">Teknik danışmanlık ve ürün desteği</p>
+                        </div>
+
+                        <!-- Feature 4 -->
+                        <div class="text-center group" data-aos="fade-up" data-aos-delay="900">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-tags text-white text-2xl md:text-3xl"></i>
+                            </div>
+                            <h4 class="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">Uygun Fiyat</h4>
+                            <p class="text-sm md:text-base text-gray-300 leading-relaxed">Rekabetçi fiyatlar ve toplu indirimler</p>
+                        </div>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <div class="text-center mt-10 md:mt-14" data-aos="fade-up" data-aos-delay="1000">
+                        <a href="products.html" class="inline-flex items-center bg-gradient-to-r from-red-600 to-orange-600 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-bold text-sm md:text-base hover:from-red-700 hover:to-orange-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105">
+                            <span>Tüm Ürünleri Keşfet</span>
+                            <i class="fas fa-arrow-right ml-2 md:ml-3"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <!-- Bottom Transition -->
-        <div class="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-b from-slate-900 to-white"></div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative z-40 overflow-hidden">
+    <section id="about" class="pt-8 pb-24 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative z-40 overflow-hidden">
         <!-- Background Elements -->
         <div class="absolute inset-0">
             <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-full blur-3xl"></div>
@@ -1016,13 +1056,13 @@
                                     </div>
                                     <div>
                                         <h3 class="text-3xl font-bold text-gray-800 mb-2">Hikayemiz</h3>
-                                        <p class="text-gray-600 text-lg">2009'dan Bugüne Yolculuk</p>
+                                        <p class="text-gray-600 text-lg">2000'dan Bugüne Yolculuk</p>
                                     </div>
                                 </div>
                                 
                                 <div class="space-y-6">
                                     <p class="text-gray-700 text-lg leading-relaxed">
-                                        <span class="font-semibold text-slate-800">2009 yılında</span> kurulan Efecan Ticaret, 
+                                        <span class="font-semibold text-slate-800">2000 yılında</span> kurulan Efecan Ticaret, 
                                         cilâ bezi sektöründe <span class="text-blue-600 font-semibold">kalite ve güvenilirlik</span> 
                                         odaklı hizmet anlayışıyla yola çıktı.
                                     </p>
@@ -1060,7 +1100,7 @@
                                 <div class="grid grid-cols-2 gap-8">
                                     <div class="text-center group">
                                         <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                                            <div class="text-5xl font-bold mb-3 text-red-400 counter" data-target="25">0</div>
+                                            <div class="text-5xl font-bold mb-3 text-red-400 counter" data-target="25">0+</div>
                                             <div class="text-sm text-gray-300 font-medium">Yıllık Deneyim</div>
                                             <div class="w-8 h-1 bg-red-400 rounded-full mx-auto mt-3"></div>
                                         </div>
@@ -1068,7 +1108,7 @@
                                     
                                     <div class="text-center group">
                                         <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                                            <div class="text-5xl font-bold mb-3 text-blue-400 counter" data-target="500">0</div>
+                                            <div class="text-5xl font-bold mb-3 text-blue-400 counter" data-target="500">0+</div>
                                             <div class="text-sm text-gray-300 font-medium">Mutlu Müşteri</div>
                                             <div class="w-8 h-1 bg-blue-400 rounded-full mx-auto mt-3"></div>
                                         </div>
@@ -1076,7 +1116,7 @@
                                     
                                     <div class="text-center group">
                                         <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                                            <div class="text-5xl font-bold mb-3 text-emerald-400 counter" data-target="100">0</div>
+                                            <div class="text-5xl font-bold mb-3 text-emerald-400 counter" data-target="100">0+</div>
                                             <div class="text-sm text-gray-300 font-medium">Ürün Çeşidi</div>
                                             <div class="w-8 h-1 bg-emerald-400 rounded-full mx-auto mt-3"></div>
                                         </div>
@@ -2122,7 +2162,7 @@
                             </div>
                         </div>
                         <p class="text-gray-300 leading-relaxed mb-6 max-w-md">
-                            2009 yılından beri Crown marka cilâ bezleri ve kuyumcu cilâ bezleri konusunda uzmanlaşmış, 
+                            2000 yılından beri Crown marka cilâ bezleri ve kuyumcu cilâ bezleri konusunda uzmanlaşmış, 
                             kalite ve güvenilirlik odaklı hizmet anlayışıyla müşterilerimize hizmet veriyoruz.
                         </p>
                         
@@ -2310,42 +2350,6 @@
             once: true,
             offset: 100
         });
-        
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2000; // 2 seconds
-                const increment = target / (duration / 16); // 60fps
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    counter.textContent = Math.floor(current) + (target === 100 ? '%' : '+');
-                }, 16);
-            });
-        }
-        
-        // Trigger counter animation when stats section is visible
-        const statsSection = document.querySelector('.stats-card');
-        if (statsSection) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(animateCounters, 500); // Delay for AOS animation
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            observer.observe(statsSection);
-        }
     </script>
 </body>
 </html>
